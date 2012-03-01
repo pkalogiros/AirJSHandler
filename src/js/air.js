@@ -5,7 +5,7 @@
 * for Adobe AIR ( iOS, Android, Desktop )
 *
 * Author : Pantelis Kalogiros
-* Contact: pkalogiros@live.com
+* Contact: pkalogiros [at] live.com
 *****************************/
 (function( win ) {
 	var _air = {
