@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" applicationDPI="160" applicationComplete="init()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import handler.JSHandler;
+			
+			private var browser:StageWebView = new StageWebView();
+			private var js:JSHandler = new JSHandler( browser );
+			
+			protected function init() : void
+			{
+				browser.stage = stage;
+				browser.viewPort = new Rectangle( 0, 0, stage.width, stage.height / 2 );
+				
+				//listening for function
+				js.listen( "timestamp", function( args:Array ) : void {
+						trace( args );
+						timestampLabel.text = args[ 0 ];
+				});
+				
+				js.listen( "location", function( args:Array ) : void {
+					multipleLabel.text = args[ 0 ];
+				});
+				
+				js.listen( "DOMLOAD", function( args:Array ) : void {
+					js.call("fromAir.Hello('Hello World')");
+				});
+
+				if( File.applicationDirectory.nativePath.indexOf('bin-debug') !== -1 )	//sanity check
+					browser.loadURL( File.applicationDirectory.nativePath.substr( 0, -10 )  + "/html/index.html" );
+				else
+					browser.loadURL( File.applicationDirectory.nativePath + "/html/index.html" );
+			}
+			
+			protected function sendTimestamp() : void
+			{
+				js.call("fromAir.timeStamp(" + new Date().time + ")")
+			}
+		]]>
+	</fx:Script>
+	<s:Label x="10" bottom="90" text="AIR SIDE:: "/>
+	<s:Label x="92" bottom="190" text="......." id="timestampLabel" />
+	<s:Button x="14" bottom="190" label="Send Timestamp to JS" click="sendTimestamp()"/>
+	<s:Label x="91" bottom="50" text="......" id="multipleLabel" />
+	
+</s:Application>
