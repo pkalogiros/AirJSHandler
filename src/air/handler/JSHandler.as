@@ -48,7 +48,7 @@ package handler
 		/************************************
 		 * Calls JavaScript function
 		 ************************************/
-		public function call( func:String = "alert(1)") : void
+		public function call( func:String ) : void
 		{
 			func = func.replace( /\s+/g, '%20' );
 			this.web_view.loadURL( "javascript:" + func );
