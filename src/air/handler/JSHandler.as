@@ -97,7 +97,7 @@ package handler
 					var name:Array,
 						args:Array = [];
 					
-					var tmp_arr:Array = [ null, null ],
+					var tmp_arr:Array = [],
 						while_int:int = 0;
 					
 					//default Arguments (shared between the function array)
