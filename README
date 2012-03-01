@@ -1,0 +1,1 @@
+AirJSHandler is a lightweight and simplistic utility that makes AIR <--> JS communication possible in Flex Mobile Projects, where ExternalInterface is unavailable.
