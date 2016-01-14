@@ -116,6 +116,8 @@
 				this._bufferS.pop();
 				
 			this.setLatest();
+
+			return this;
 		},
 		/*****************************
 		* setLatest(), chainable  - Added on vI
